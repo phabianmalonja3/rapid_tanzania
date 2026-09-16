@@ -8,6 +8,8 @@
 
 
     <!-- Fonts -->
+    <!-- Poppins Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
@@ -23,7 +25,7 @@
     <link rel="stylesheet"
         href="{{ asset('assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    
 
    
 
@@ -33,18 +35,10 @@
 
    <body class="light light-sidebar theme-white">
 
-<div id="app">
-<!-- Preloader -->
   <div id="preloader">
-    <div class='preloader'>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
+    <div class="circular-loader"></div>
+</div>
+
 
 <div class="main-wrapper main-wrapper-1">
 

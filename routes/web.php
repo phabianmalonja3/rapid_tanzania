@@ -1,27 +1,28 @@
 <?php
 
-use App\Models\Word;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WordController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\DonateController;
+use App\Http\Controllers\DonationMailController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\OrgClientController;
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SitemapController;
-use App\Http\Controllers\WebsiteController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashbordController;
-use App\Http\Controllers\PositionController;
-use App\Http\Controllers\OrgClientController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VolunteerController;
-use App\Http\Controllers\DonationMailController;
+use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\WordController;
+use App\Models\Word;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -62,5 +63,27 @@ Route::get('/website/contact', [WebsiteController::class, 'contactForm'])->name(
 Route::get('/website/about', [WebsiteController::class, 'aboutUs'])->name('about');
 Route::get('/website/donate', [DonateController::class, 'donate'])->name('donate');
 Route::post('/website/donate', [DonationMailController::class, 'send'])->name('donate.store');
+Route::get('/dashboard/media', [MediaController::class, 'index'])->name('videos.index');
+
+Route::get('/dashboard/media/create', [MediaController::class, 'create'])
+    ->name('videos.create');
+
+Route::post('/dashboard/media', [MediaController::class, 'store'])
+    ->name('videos.store');
+
+Route::get('/dashboard/media/{media}', [MediaController::class, 'show'])
+    ->name('videos.show');
+
+Route::get('/dashboard/media/{media}/edit', [MediaController::class, 'edit'])
+    ->name('videos.edit');
+
+Route::put('/dashboard/media/{media}', [MediaController::class, 'update'])
+    ->name('videos.update');
+
+Route::patch('/dashboard/media/{media}', [MediaController::class, 'update'])
+    ->name('videos.update');
+
+Route::delete('/dashboard/media/{media}', [MediaController::class, 'destroy'])
+    ->name('videos.destroy');
 Route::get('/website/project/view/{project:slug}', [WebsiteController::class, 'showProject'])->name('project-show');
 

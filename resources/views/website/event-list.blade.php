@@ -95,18 +95,7 @@
 </style>
 
 <main class="main">
-    <section class="about-page-header" style="background-image: url({{ asset('banner.png')}});">
-        <div class="overlay"></div>
-        <div class="container text-center">
-            <h1 class="text-white fw-bold">{{ Str::title("Events and Updates") }}</h1>
-            <nav class="breadcrumbs">
-                <ol>
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li class="current text-white-50">{{ Str::title("Events and Updates") }}</li>
-                </ol>
-            </nav>
-        </div>
-    </section>
+    
 
     <header class="events-header text-center">
         <div class="container position-relative" data-aos="fade-down">

@@ -80,13 +80,10 @@
                                                             <a href="{{ route('posts.show', $post->slug) }}" class="btn  btn-info" title="View Post">
                                                                 <i class="fas fa-eye"></i>
                                                             </a>
-                                                            {{-- Edit Button --}}
-                                                            <a href="{{ route('posts.edit', $post->slug) }}" class="btn  btn-warning" title="Edit Post">
-                                                                <i class="fas fa-edit"></i>
-                                                            </a>
+                                                            
                                                        
 
-                                                             <form action="{{ route('posts.destroy', ['post'=>$post->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?')" class="d-inline">
+                                                             <form action="{{ route('posts.destroy', ['post'=>$post->slug]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?')" class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn btn-danger" title="Delete">

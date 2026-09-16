@@ -125,17 +125,6 @@
   --scroll-percent: 0%; 
 }
 
-.scroll-progress-wrapper {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* The border effect */
-  background: conic-gradient(#0088cc var(--scroll-percent), transparent 0%);
-  padding: 3px; /* This defines the border thickness */
-}
 
 .scroll-progress-wrapper i {
   background: white; /* Inner button color */
@@ -185,21 +174,18 @@
         <i class="bi bi-whatsapp"></i>
     </a>
 
-   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-    <span class="scroll-progress-wrapper">
+   <a href="#"  class="scroll-top d-flex align-items-center justify-content-center">
+    {{-- <span class="scroll-progress-wrapper">
         <i class="bi bi-arrow-up-short"></i>
-    </span>
+    </span> --}}
 </a>
-    <div id="preloader">
-        <div class='preloader'>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
+<div id="preloader">
+      <div class="spinner-wrapper">
+          <div class="circular-loader"></div>
+      </div>
+  </div>
+
+</div>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('vendor/aos/aos.js') }}"></script>
@@ -227,10 +213,8 @@
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrolled = (winScroll / height) * 100;
 
-  // Update the CSS Variable
   scrollTopButton.style.setProperty('--scroll-percent', scrolled + '%');
 
-  // Show/Hide button based on scroll position
   if (winScroll > 100) {
     scrollTopButton.style.opacity = "1";
   } else {
@@ -308,9 +292,11 @@
                 toggleScrollTop();
             }
 
-            /*** Preloader ***/
-            const preloader = document.querySelector('#preloader');
-            if (preloader) setTimeout(() => preloader.remove(), 300);
+          const preloader = document.querySelector('#preloader');
+
+if (preloader) {
+    setTimeout(() => preloader.remove(), 300);
+}
 
 
       const FORM_KEY = "donation_form_data";

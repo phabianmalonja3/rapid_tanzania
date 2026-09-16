@@ -188,12 +188,6 @@
         </div>
     </section>
 
-    <section class="py-5 bg-primary text-white text-center">
-        <div class="container" data-aos="zoom-in">
-            <h2 class="fw-bold">Ready to Support Our Mission?</h2>
-            <p class="mb-4 opacity-75">Join RAPID Tanzania in building a more resilient nation.</p>
-            <a href="{{ route('donate') }}" class="btn btn-light rounded-pill px-5 py-2 fw-bold text-primary">Get Involved</a>
-        </div>
-    </section>
+    
 </main>
 @endsection

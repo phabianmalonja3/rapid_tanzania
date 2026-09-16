@@ -103,7 +103,25 @@
                 </ul>
             </li>
 
+            {{-- Media --}}
+<li class="dropdown {{ Route::is('videos.index') ? 'active' : '' }}">
+    <a href="#" class="menu-toggle nav-link has-dropdown">
+        <i data-feather="video"></i>
+        <span>Media</span>
+    </a>
+
+    <ul class="dropdown-menu">
+        <li>
+            <a class="nav-link" href="{{ route('videos.index') }}">
+                <i data-feather="video"></i>
+                <span>Videos</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
             </li>
+
             @endrole
 
   

@@ -20,24 +20,41 @@
                 </div>
             </div>
 
+            {{-- ============================================ --}}
+            {{-- VIDEO MBILI ZA MWISHO KUTOKA DATABASE          --}}
+            {{-- ============================================ --}}
+            @php
+                // Chukua video mbili za mwisho zilizo Active
+                $footerVideos = \App\Models\Video::
+                                    latest()
+                                    ->take(2)
+                                    ->get();
+            @endphp
 
-            <div class="col-lg-3 col-6 footer-videos text-center">
-                <h4>Video </h4>
-                <video width="100%" autoplay muted loop playsinline controls>
-                    <source src="{{ asset('videos/WhatsApp Video 2025-11-24 at 12.53.46_e1808fd2.mp4') }}"
-                        type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <div class="col-lg-3 col-6 footer-videos text-center">
-                <h4>Video </h4>
-                <video width="100%" autoplay muted loop playsinline controls>
-                    <source src="{{ asset('videos/WhatsApp Video 2025-11-24 at 12.53.24_dcfa7f39.mp4') }}"
-                        type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+            @forelse($footerVideos as $video)
+                <div class="col-lg-3 col-6 footer-videos text-center">
+                    <h4>{{ $video->title ?? 'Video' }}</h4>
+                    <video width="100%" autoplay muted loop playsinline controls
+                        poster="{{ $video->thumbnail ? asset( $video->thumbnail) : '' }}">
+                        @if($video->url)
+                            <source src="{{ $video->url }}" type="video/mp4">
+                        @elseif($video->video_file)
+                            <source src="{{ asset( $video->video_file) }}" type="video/mp4">
+                        @endif
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            @empty
+                {{-- Kama hakuna video kwenye database, tunaonyesha ujumbe --}}
+                <div class="col-lg-3 col-6 footer-videos text-center">
+                    <h4>Video</h4>
+                    <p class="text-white">Hakuna video kwa sasa.</p>
+                </div>
+                <div class="col-lg-3 col-6 footer-videos text-center">
+                    <h4>Video</h4>
+                    <p class="text-white">Hakuna video kwa sasa.</p>
+                </div>
+            @endforelse
 
             <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                 <h4>Contact Us</h4>

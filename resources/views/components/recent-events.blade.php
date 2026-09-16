@@ -41,8 +41,8 @@
         
         <div class="section-title text-center mb-5">
             <h6 class="fw-bold text-uppercase mb-2" style="color: #0088cc; letter-spacing: 2px;">Updates</h6>
-            <h2 class="display-5 fw-bold" style="font-family: serif;">Latest Events</h2>
-            {{-- <div class="mx-auto" style="width: 50px; height: 3px; background-color: #0088cc;"></div> --}}
+            <h2 class="display-5 fw-bold">Latest Events</h2>
+            <div class="mx-auto" style="width: 50px; height: 3px; background-color: #0088cc;"></div>
         </div>
 
         @php

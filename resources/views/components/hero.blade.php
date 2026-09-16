@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
@@ -6,30 +6,53 @@
         --primary-color: #0088cc;
         --slide-time: 7000ms;
         --text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+         --default-font: "Poppins", sans-serif;
+         --heading-font: "Poppins", sans-serif;
     }
 
-    .hero-slider {
-        position: relative;
-        height: 100vh;
-        min-height: 650px;
-        overflow: hidden;
-        background: #000;
-        font-family: 'Inter', sans-serif;
-    }
+   .hero-slider {
+    position: relative;
+    height: 100vh;
+    min-height: 650px;
+    overflow: hidden;
+    background: #000;
+    font-family: var(--default-font);
+}
 
-    /* Background Image & Ken Burns Effect */
-    .hero-slider .slide {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 1.5s ease-in-out;
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        align-items: center;
-        filter: contrast(1.05) brightness(0.75);
-    }
+.hero-slider,
+.hero-slider .tagline,
+.hero-slider .tagline-text,
+.hero-slider h1,
+.hero-slider p,
+.hero-slider .btn-main,
+.hero-slider .btn-secondary-outline {
+    font-family: var(--default-font);
+}
+
+.hero-slider h1 {
+    font-family: var(--heading-font);
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    color: #ffffff !important;
+    line-height: 1.1;
+    max-width: 850px;
+    margin-bottom: 25px;
+    text-shadow: var(--text-shadow);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+   .hero-slider .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    filter: none;
+}
 
     .hero-slider .slide.active {
         opacity: 1;
@@ -42,18 +65,17 @@
         100% { transform: scale(1.1); }
     }
 
-    /* Professional Gradient Overlay */
     .hero-slider .overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-            to right, 
-            rgba(0,0,0,0.9) 0%, 
-            rgba(0,0,0,0.4) 50%, 
-            rgba(0,0,0,0.1) 100%
-        );
-        z-index: 1;
-    }
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.08) 45%,
+        rgba(0, 0, 0, 0.00) 100%
+    );
+    z-index: 1;
+}
 
     /* Content Layout */
     .hero-slider .content-wrapper {
@@ -277,15 +299,12 @@
                     <h1>{{ $post->title }}</h1>
 
                     <p>{{ Str::limit(strip_tags($post->content), 160, '...') }}</p>
+                    <a href="{{ route('event-view', $post->slug ?? '#') }}" class="read-more-btn">
+    Read More
+    <i class="bi bi-arrow-right"></i>
+</a>
 
-                    <div class="btn-hero-group">
-                        <a href="{{ route('event-view', $post->slug ?? '#') }}" class="btn-main">
-                            See Events <i class="bi bi-arrow-right-short" style="font-size: 1.2rem;"></i>
-                        </a>
-                        <a href="{{ route('donate') }}" class="btn-secondary-outline">
-                            <i class="bi bi-heart-fill text-danger" style="font-size: 0.8rem;"></i> Volunteer
-                        </a>
-                    </div>
+                   
                 </div>
             </div>
         @endforeach

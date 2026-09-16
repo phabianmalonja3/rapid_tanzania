@@ -193,10 +193,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // Authorization
-        if (Auth::id() !== $post->auth_id) {
-            abort(403, 'Unauthorized action.');
-        }
+       
+
+    
         
         // Delete the associated image file from storage
         if ($post->image) {
