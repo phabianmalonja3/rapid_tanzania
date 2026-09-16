@@ -16,17 +16,7 @@
           <div class="main-content" style="min-height: 600px;">
             <section class="section">
                 <div class="row">
-        <div class="section-header">
-            <h1>Videos</h1>
-
-            <div class="section-header-button">
-                <a href="{{ route('videos.create') }}" class="btn btn-primary">
-                    <i data-feather="plus"></i>
-                    Add Video
-                </a>
-            </div>
-        </div>
-
+       
         <div class="section-body mx-10">
 
             {{-- Breadcrumb --}}
