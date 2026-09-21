@@ -296,7 +296,7 @@
                         </div>
                     </div>
 
-                    <h2>{{ $post->title }}</h2>
+                    <h2 class="text-white">{{ $post->title }}</h2>
 
                     <p>{{ Str::limit(strip_tags($post->content), 160, '...') }}</p>
                     <a href="{{ route('event-view', $post->slug ?? '#') }}" class="read-more-btn">
