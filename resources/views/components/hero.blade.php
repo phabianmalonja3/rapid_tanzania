@@ -278,7 +278,7 @@
         <?php 
             use App\Models\Post;
             use Illuminate\Support\Str;
-            $posts = Post::latest()->take(5)->get();
+            $posts = Post::latest()->take(10)->get();
         ?>
 
         @foreach ($posts as $index => $post)
@@ -296,7 +296,7 @@
                         </div>
                     </div>
 
-                    <h1>{{ $post->title }}</h1>
+                    <h2>{{ $post->title }}</h2>
 
                     <p>{{ Str::limit(strip_tags($post->content), 160, '...') }}</p>
                     <a href="{{ route('event-view', $post->slug ?? '#') }}" class="read-more-btn">
