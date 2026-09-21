@@ -299,10 +299,40 @@
                     <h2 class="text-white">{{ $post->title }}</h2>
 
                     <p>{{ Str::limit(strip_tags($post->content), 160, '...') }}</p>
-                    <a href="{{ route('event-view', $post->slug ?? '#') }}" class="read-more-btn">
+                   <a href="{{ route('event-view', $post->slug ?? '#') }}" class="read-more-btn">
     Read More
     <i class="bi bi-arrow-right"></i>
 </a>
+
+<style>
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #0088cc;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.read-more-btn:hover {
+    background-color: #0077b3; /* slightly darker on hover */
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.read-more-btn i {
+    transition: transform 0.25s ease;
+}
+
+.read-more-btn:hover i {
+    transform: translateX(3px);
+}
+</style>
 
                    
                 </div>
