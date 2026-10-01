@@ -48,7 +48,7 @@
                 {{-- Kama hakuna video kwenye database, tunaonyesha ujumbe --}}
                 <div class="col-lg-3 col-6 footer-videos text-center">
                     <h4>Video</h4>
-                    <p class="text-white">Hakuna video kwa sasa.</p>
+                    <p class="text-white">No videos available.</p>
                 </div>
                 <div class="col-lg-3 col-6 footer-videos text-center">
                     <h4>Video</h4>
