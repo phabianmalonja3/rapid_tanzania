@@ -156,9 +156,7 @@
         <li><a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Contact</a></li>
 
         <li>
-    <a href="{{ route('donate') }}" class="donate-btn">
-        <i class="bi bi-heart-fill me-2"></i>Donate
-    </a>
+    
 </li>
     </ul>
 
