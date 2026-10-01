@@ -1,389 +1,944 @@
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
     :root {
         --primary-color: #0088cc;
         --slide-time: 7000ms;
-        --text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-         --default-font: "Poppins", sans-serif;
-         --heading-font: "Poppins", sans-serif;
+        --text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        --default-font: "Poppins", sans-serif;
+        --heading-font: "Poppins", sans-serif;
     }
 
-   .hero-slider {
-    position: relative;
-    height: 100vh;
-    min-height: 650px;
-    overflow: hidden;
-    background: #000;
-    font-family: var(--default-font);
-}
+    /* =====================================================
+       HERO SLIDER
+    ===================================================== */
+    .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 650px;
+        overflow: hidden;
+        background: #000;
+        font-family: var(--default-font);
+    }
 
-.read-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background-color: #0088cc;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: background-color 0.25s ease, transform 0.15s ease;
-}
+    /* =====================================================
+       SLIDES CONTAINER
+    ===================================================== */
+    .hero-slider .slides {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-.read-more-btn:hover {
-    background-color: #0077b3; /* slightly darker on hover */
-    color: #ffffff;
-    transform: translateX(2px);
-}
+    /* =====================================================
+       SINGLE SLIDE
+    ===================================================== */
+    .hero-slider .slide {
+        position: absolute;
+        inset: 0;
 
-.read-more-btn i {
-    transition: transform 0.25s ease;
-}
+        width: 100%;
+        height: 100%;
 
-.read-more-btn:hover i {
-    transform: translateX(3px);
-}
+        opacity: 0;
+        visibility: hidden;
 
-.hero-slider,
-.hero-slider .tagline,
-.hero-slider .tagline-text,
-.hero-slider h1,
-.hero-slider p,
-.hero-slider .btn-main,
-.hero-slider .btn-secondary-outline {
-    font-family: var(--default-font);
-}
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
 
-.hero-slider h1 {
-    font-family: var(--heading-font);
-    font-size: clamp(2.5rem, 6vw, 4.2rem);
-    color: #ffffff !important;
-    line-height: 1.1;
-    max-width: 850px;
-    margin-bottom: 25px;
-    text-shadow: var(--text-shadow);
-    opacity: 0;
-    transform: translateY(20px);
-}
+        transition:
+            opacity 1.3s ease-in-out,
+            visibility 1.3s ease-in-out;
 
-   .hero-slider .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1.5s ease-in-out;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    filter: none;
-}
+        display: flex;
+        align-items: center;
+    }
 
+    /* ACTIVE SLIDE */
     .hero-slider .slide.active {
         opacity: 1;
         visibility: visible;
-        animation: kenBurns 20s infinite alternate;
+
+        animation: kenBurns 20s ease-in-out infinite alternate;
     }
 
+    /* =====================================================
+       KEN BURNS EFFECT
+    ===================================================== */
     @keyframes kenBurns {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.1); }
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.08);
+        }
     }
 
+    /* =====================================================
+       OVERLAY
+    ===================================================== */
     .hero-slider .overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.25) 0%,
-        rgba(0, 0, 0, 0.08) 45%,
-        rgba(0, 0, 0, 0.00) 100%
-    );
-    z-index: 1;
-}
+        position: absolute;
+        inset: 0;
 
-    /* Content Layout */
-    .hero-slider .content-wrapper {
-        position: relative;
-        z-index: 2;
         width: 100%;
-        padding: 0 8%;
+        height: 100%;
+
+        z-index: 1;
+
+        background:
+            linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.55) 0%,
+                rgba(0, 0, 0, 0.35) 40%,
+                rgba(0, 0, 0, 0.15) 70%,
+                rgba(0, 0, 0, 0.05) 100%
+            );
     }
 
-    /* Double-Layered Tagline */
-    .hero-slider .tagline {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
-        border-left: 3px solid var(--primary-color);
-        padding-left: 15px;
-        opacity: 0;
-        transform: translateY(20px);
+    /* =====================================================
+       BOTTOM CONTENT
+       MAANDISHI YOTE YAKO CHINI
+    ===================================================== */
+    .hero-slider .content-wrapper {
+        position: absolute;
+
+        left: 0;
+        bottom: 80px;
+
+        width: 100%;
+
+        padding-left: 8%;
+        padding-right: 8%;
+
+        z-index: 3;
     }
 
-    .hero-slider .tagline-text {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.3;
-    }
+    /* =====================================================
+       TITLE
+    ===================================================== */
+    .hero-slider h2 {
+        font-family: var(--heading-font);
 
-    .hero-slider .tagline-text .top-text {
-        font-weight: 800;
-        font-size: 0.85rem;
-        letter-spacing: 2px;
+        font-size: clamp(2rem, 5vw, 4.2rem);
+
+        font-weight: 700;
+
         color: #ffffff !important;
-    }
 
-    .hero-slider .tagline-text .bottom-text {
-        font-weight: 400;
-        font-size: 1rem;
-        color: #ffffff !important;
-        opacity: 0.9;
-    }
-
-    /* Typography */
-    .hero-slider h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(2.5rem, 6vw, 4.2rem);
-        color: #ffffff !important;
         line-height: 1.1;
+
         max-width: 850px;
-        margin-bottom: 25px;
+
+        margin: 0 0 20px 0;
+
         text-shadow: var(--text-shadow);
+
         opacity: 0;
-        transform: translateY(20px);
+
+        transform: translateY(30px);
     }
 
+    /* =====================================================
+       DESCRIPTION
+    ===================================================== */
     .hero-slider p {
-        font-size: 1.1rem;
+        font-family: var(--default-font);
+
+        font-size: 1.05rem;
+
+        font-weight: 400;
+
         color: #ffffff !important;
-        max-width: 600px;
-        margin-bottom: 35px;
+
         line-height: 1.6;
+
+        max-width: 650px;
+
+        margin: 0 0 25px 0;
+
+        text-shadow: var(--text-shadow);
+
         opacity: 0;
-        transform: translateY(20px);
+
+        transform: translateY(30px);
     }
 
-    /* Compact Button Styling */
-    .btn-hero-group {
-        display: flex;
+    /* =====================================================
+       READ MORE BUTTON
+    ===================================================== */
+    .read-more-btn {
+        display: inline-flex;
+
         align-items: center;
-        gap: 15px;
-        flex-wrap: wrap;
-        opacity: 0;
-        transform: translateY(20px);
-    }
 
-    .btn-main {
-        background: var(--primary-color);
+        justify-content: center;
+
+        gap: 8px;
+
+        padding: 10px 20px;
+
+        background-color: var(--primary-color);
+
         color: #ffffff !important;
-        padding: 10px 24px; /* Smaller Padding */
+
+        text-decoration: none !important;
+
+        border-radius: 6px;
+
+        font-family: var(--default-font);
+
         font-weight: 600;
-        font-size: 0.9rem; /* Smaller Font */
-        text-transform: uppercase;
-        text-decoration: none;
+
+        font-size: 14px;
+
+        line-height: 1;
+
         border: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
-        border-radius: 4px;
+
+        cursor: pointer;
+
+        transition:
+            background-color 0.25s ease,
+            transform 0.2s ease,
+            box-shadow 0.25s ease;
+
+        opacity: 0;
+
+        transform: translateY(30px);
     }
 
-    .btn-main:hover {
-        background: #0077b3;
-        transform: translateY(-2px);
-    }
+    /* BUTTON HOVER */
+    .read-more-btn:hover {
+        background-color: #0077b3;
 
-    .btn-secondary-outline {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
         color: #ffffff !important;
-        padding: 10px 24px; /* Smaller Padding */
-        font-weight: 600;
-        font-size: 0.9rem; /* Smaller Font */
-        text-transform: uppercase;
-        text-decoration: none;
-        border: 1.5px solid #ffffff; /* Thinner Border */
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-        border-radius: 4px;
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 6px 18px rgba(0, 136, 204, 0.35);
     }
 
-    .btn-secondary-outline:hover {
-        background: #ffffff;
-        color: #000000 !important;
+    /* BUTTON ICON */
+    .read-more-btn i {
+        font-size: 15px;
+
+        transition:
+            transform 0.25s ease;
     }
 
-    /* Staggered Content Animation */
-    .slide.active .tagline { animation: floatUp 0.8s forwards 0.3s; }
-    .slide.active h1 { animation: floatUp 0.8s forwards 0.5s; }
-    .slide.active p { animation: floatUp 0.8s forwards 0.7s; }
-    .slide.active .btn-hero-group { animation: floatUp 0.8s forwards 0.9s; }
+    .read-more-btn:hover i {
+        transform: translateX(4px);
+    }
+
+    /* =====================================================
+       CONTENT ANIMATION
+    ===================================================== */
+
+    .hero-slider .slide.active h2 {
+        animation:
+            floatUp 0.8s ease forwards 0.3s;
+    }
+
+    .hero-slider .slide.active p {
+        animation:
+            floatUp 0.8s ease forwards 0.5s;
+    }
+
+    .hero-slider .slide.active .read-more-btn {
+        animation:
+            floatUp 0.8s ease forwards 0.7s;
+    }
 
     @keyframes floatUp {
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+
+            transform:
+                translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
     }
 
-    /* Sidebar Indicators */
+    /* =====================================================
+       SLIDER INDICATORS
+    ===================================================== */
     .slider-indicators {
         position: absolute;
+
         right: 40px;
+
         top: 50%;
+
         transform: translateY(-50%);
+
         z-index: 10;
+
         display: flex;
+
         flex-direction: column;
+
+        align-items: center;
+
         gap: 25px;
-        padding: 25px 12px;
-        border-radius: 40px;
-      
+
+        padding: 20px 10px;
     }
 
+    /* =====================================================
+       INDICATOR ITEM
+    ===================================================== */
     .indicator-item {
         position: relative;
-        width: 18px; height: 18px;
+
+        width: 18px;
+
+        height: 18px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
         cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
     }
 
+    /* =====================================================
+       INDICATOR DOT
+    ===================================================== */
     .indicator-dot {
-        width: 8px; height: 8px;
-        background: rgba(255,255,255,0.4);
+        width: 8px;
+
+        height: 8px;
+
+        background:
+            rgba(255, 255, 255, 0.45);
+
         border-radius: 50%;
-        transition: 0.4s;
+
+        transition:
+            all 0.4s ease;
     }
 
+    /* ACTIVE DOT */
     .indicator-item.active .indicator-dot {
-        background: var(--primary-color);
-        transform: scale(1.3);
+        background:
+            var(--primary-color);
+
+        transform:
+            scale(1.4);
+
+        box-shadow:
+            0 0 10px rgba(0, 136, 204, 0.6);
     }
 
+    /* =====================================================
+       INDICATOR RING
+    ===================================================== */
     .indicator-ring {
         position: absolute;
-        top: -6px; left: -6px;
-        width: 30px; height: 30px;
-        transform: rotate(-90deg);
+
+        top: -6px;
+
+        left: -6px;
+
+        width: 30px;
+
+        height: 30px;
+
+        transform:
+            rotate(-90deg);
+
         opacity: 0;
+
+        overflow: visible;
     }
 
-    .indicator-item.active .indicator-ring { opacity: 1; }
+    /* ACTIVE RING */
+    .indicator-item.active .indicator-ring {
+        opacity: 1;
+    }
 
     .indicator-ring circle {
         fill: none;
-        stroke: var(--primary-color);
+
+        stroke:
+            var(--primary-color);
+
         stroke-width: 2.5;
+
+        stroke-linecap: round;
+
         stroke-dasharray: 88;
+
         stroke-dashoffset: 88;
     }
 
+    /* RING PROGRESS */
     .indicator-item.active .indicator-ring circle {
-        animation: ringProgress var(--slide-time) linear forwards;
+        animation:
+            ringProgress var(--slide-time) linear forwards;
     }
 
     @keyframes ringProgress {
-        from { stroke-dashoffset: 88; }
-        to { stroke-dashoffset: 0; }
+        from {
+            stroke-dashoffset: 88;
+        }
+
+        to {
+            stroke-dashoffset: 0;
+        }
     }
 
+    /* =====================================================
+       TABLET
+    ===================================================== */
+    @media (max-width: 992px) {
+
+        .hero-slider {
+            min-height: 600px;
+        }
+
+        .hero-slider .content-wrapper {
+            bottom: 70px;
+
+            padding-left: 6%;
+            padding-right: 6%;
+        }
+
+        .hero-slider h2 {
+            max-width: 750px;
+        }
+
+        .hero-slider p {
+            max-width: 600px;
+        }
+
+        .slider-indicators {
+            right: 25px;
+        }
+    }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
     @media (max-width: 768px) {
-        .btn-hero-group { flex-direction: column; align-items: flex-start; }
-        .hero-slider .content-wrapper { padding: 0 5%; }
-        .slider-indicators { right: 15px; }
-        .btn-main, .btn-secondary-outline { width: fit-content; }
+
+        .hero-slider {
+            height: 100vh;
+
+            min-height: 600px;
+        }
+
+        /* CONTENT CHINI */
+        .hero-slider .content-wrapper {
+            left: 0;
+
+            bottom: 50px;
+
+            width: 100%;
+
+            padding-left: 5%;
+            padding-right: 12%;
+        }
+
+        /* TITLE */
+        .hero-slider h2 {
+            font-size: 2rem;
+
+            line-height: 1.15;
+
+            max-width: 90%;
+
+            margin-bottom: 15px;
+        }
+
+        /* DESCRIPTION */
+        .hero-slider p {
+            font-size: 0.95rem;
+
+            line-height: 1.5;
+
+            max-width: 90%;
+
+            margin-bottom: 20px;
+        }
+
+        /* BUTTON */
+        .read-more-btn {
+            padding: 10px 18px;
+
+            font-size: 13px;
+        }
+
+        /* INDICATORS */
+        .slider-indicators {
+            right: 12px;
+
+            gap: 20px;
+        }
+    }
+
+    /* =====================================================
+       SMALL MOBILE
+    ===================================================== */
+    @media (max-width: 480px) {
+
+        .hero-slider {
+            min-height: 550px;
+        }
+
+        .hero-slider .content-wrapper {
+            bottom: 35px;
+
+            padding-left: 5%;
+
+            padding-right: 14%;
+        }
+
+        .hero-slider h2 {
+            font-size: 1.65rem;
+
+            line-height: 1.2;
+
+            margin-bottom: 12px;
+        }
+
+        .hero-slider p {
+            font-size: 0.88rem;
+
+            line-height: 1.45;
+
+            margin-bottom: 18px;
+
+            max-width: 88%;
+        }
+
+        .read-more-btn {
+            padding: 9px 16px;
+
+            font-size: 12px;
+        }
+
+        .slider-indicators {
+            right: 7px;
+
+            gap: 17px;
+        }
+
+        .indicator-item {
+            width: 16px;
+
+            height: 16px;
+        }
+
+        .indicator-dot {
+            width: 7px;
+
+            height: 7px;
+        }
+
+        .indicator-ring {
+            width: 28px;
+
+            height: 28px;
+
+            top: -6px;
+
+            left: -6px;
+        }
     }
 </style>
 
+
+<!-- =====================================================
+     HERO SLIDER
+===================================================== -->
+
 <section class="hero-slider">
+
+    <!-- =================================================
+         SLIDES
+    ================================================== -->
+
     <div class="slides">
-        <?php 
+
+        <?php
+
             use App\Models\Post;
             use Illuminate\Support\Str;
-            $posts = Post::latest()->take(10)->get();
+
+            /*
+             * Get latest 10 posts
+             */
+            $posts = Post::latest()
+                ->take(10)
+                ->get();
+
         ?>
 
+
         @foreach ($posts as $index => $post)
-            <div class="slide @if ($loop->first) active @endif" 
-                 style="background-image: url({{ asset('storage/' . $post->image) }});">
-                
+
+            <div
+                class="slide @if($loop->first) active @endif"
+
+                style="
+                    background-image:
+                    url('{{ asset('storage/' . $post->image) }}');
+                "
+            >
+
+                <!-- =====================================
+                     DARK OVERLAY
+                ====================================== -->
+
                 <div class="overlay"></div>
 
+
+                <!-- =====================================
+                     CONTENT
+                     ITAKAA CHINI
+                ====================================== -->
+
                 <div class="content-wrapper">
-                   
-
-                    <h2 class="text-white">{{ $post->title }}</h2>
-
-                    <p>{{ Str::limit(strip_tags($post->content), 160, '...') }}</p>
-                   <a href="{{ route('event-view', $post->slug ?? '#') }}" class="read-more-btn">
-    Read More
-    <i class="bi bi-arrow-right"></i>
-</a>
 
 
-                   
+                    <!-- =================================
+                         POST TITLE
+                    ================================== -->
+
+                    <h3 class="text-white">
+                        {{ $post->title }}
+                    </h3>
+
+
+                    <!-- =================================
+                         POST DESCRIPTION
+                    ================================== -->
+
+                    <p>
+                        {{ Str::limit(
+                            strip_tags($post->content),
+                            160,
+                            '...'
+                        ) }}
+                    </p>
+
+
+                    <!-- =================================
+                         READ MORE
+                    ================================== -->
+
+                    <a
+                        href="{{ route(
+                            'event-view',
+                            $post->slug ?? '#'
+                        ) }}"
+
+                        class="read-more-btn"
+                    >
+
+                        Read More
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+
                 </div>
+
             </div>
+
         @endforeach
+
     </div>
+
+
+    <!-- =================================================
+         SLIDER INDICATORS
+    ================================================== -->
 
     <div class="slider-indicators">
+
         @foreach ($posts as $index => $post)
-            <div class="indicator-item @if($loop->first) active @endif" data-index="{{ $index }}">
-                <svg class="indicator-ring">
-                    <circle cx="15" cy="15" r="14"></circle>
+
+            <div
+                class="
+                    indicator-item
+                    @if($loop->first) active @endif
+                "
+
+                data-index="{{ $index }}"
+            >
+
+                <!-- RING -->
+
+                <svg
+                    class="indicator-ring"
+                    viewBox="0 0 30 30"
+                >
+
+                    <circle
+                        cx="15"
+                        cy="15"
+                        r="14"
+                    ></circle>
+
                 </svg>
+
+
+                <!-- DOT -->
+
                 <div class="indicator-dot"></div>
+
             </div>
+
         @endforeach
+
     </div>
+
 </section>
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.indicator-item');
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+
+        /* =============================================
+           GET SLIDES
+        ============================================== */
+
+        const slides =
+            document.querySelectorAll(
+                '.hero-slider .slide'
+            );
+
+
+        /* =============================================
+           GET INDICATORS
+        ============================================== */
+
+        const indicators =
+            document.querySelectorAll(
+                '.hero-slider .indicator-item'
+            );
+
+
+        /* =============================================
+           SLIDE TIME
+        ============================================== */
+
+        const slideTime = 7000;
+
+
+        /* =============================================
+           CURRENT SLIDE
+        ============================================== */
+
         let currentIndex = 0;
-        const slideTime = 7000; 
+
+
+        /* =============================================
+           CHECK IF SLIDES EXIST
+        ============================================== */
+
+        if (!slides.length) {
+            return;
+        }
+
+
+        /* =============================================
+           GO TO SLIDE
+        ============================================== */
 
         function goToSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            indicators.forEach(i => {
-                i.classList.remove('active');
-                const ring = i.querySelector('circle');
-                ring.style.animation = 'none';
-                void ring.offsetWidth; 
-                ring.style.animation = null;
-            });
-            
-            slides[index].classList.add('active');
-            indicators[index].classList.add('active');
+
+            /* -----------------------------------------
+               Remove active from slides
+            ------------------------------------------ */
+
+            slides.forEach(
+                function (slide) {
+
+                    slide.classList.remove(
+                        'active'
+                    );
+
+                }
+            );
+
+
+            /* -----------------------------------------
+               Remove active from indicators
+            ------------------------------------------ */
+
+            indicators.forEach(
+                function (indicator) {
+
+                    indicator.classList.remove(
+                        'active'
+                    );
+
+
+                    /* -------------------------------
+                       Reset ring animation
+                    -------------------------------- */
+
+                    const ring =
+                        indicator.querySelector(
+                            'circle'
+                        );
+
+
+                    if (ring) {
+
+                        ring.style.animation =
+                            'none';
+
+                        /*
+                         * Force browser reflow
+                         * so animation can restart
+                         */
+
+                        void ring.offsetWidth;
+
+                        ring.style.animation =
+                            null;
+                    }
+
+                }
+            );
+
+
+            /* -----------------------------------------
+               Activate slide
+            ------------------------------------------ */
+
+            if (slides[index]) {
+
+                slides[index].classList.add(
+                    'active'
+                );
+
+            }
+
+
+            /* -----------------------------------------
+               Activate indicator
+            ------------------------------------------ */
+
+            if (indicators[index]) {
+
+                indicators[index].classList.add(
+                    'active'
+                );
+
+            }
+
+
+            /* -----------------------------------------
+               Update current index
+            ------------------------------------------ */
+
             currentIndex = index;
+
         }
+
+
+        /* =============================================
+           NEXT SLIDE
+        ============================================== */
 
         function nextSlide() {
-            let next = (currentIndex + 1) % slides.length;
-            goToSlide(next);
+
+            const nextIndex =
+                (currentIndex + 1)
+                % slides.length;
+
+
+            goToSlide(nextIndex);
+
         }
 
-        indicators.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                goToSlide(idx);
-                resetTimer();
-            });
-        });
 
-        let autoPlay = setInterval(nextSlide, slideTime);
+        /* =============================================
+           INDICATOR CLICK
+        ============================================== */
+
+        indicators.forEach(
+            function (indicator, index) {
+
+                indicator.addEventListener(
+                    'click',
+                    function () {
+
+                        goToSlide(index);
+
+                        resetTimer();
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =============================================
+           AUTO PLAY
+        ============================================== */
+
+        let autoPlay =
+            setInterval(
+                nextSlide,
+                slideTime
+            );
+
+
+        /* =============================================
+           RESET TIMER
+        ============================================== */
 
         function resetTimer() {
+
             clearInterval(autoPlay);
-            autoPlay = setInterval(nextSlide, slideTime);
+
+
+            autoPlay =
+                setInterval(
+                    nextSlide,
+                    slideTime
+                );
+
         }
-    });
+
+
+        /* =============================================
+           START FIRST SLIDE
+        ============================================== */
+
+        goToSlide(0);
+
+    }
+
+);
+
 </script>
