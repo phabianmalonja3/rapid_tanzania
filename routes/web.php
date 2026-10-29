@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminGalleryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\DonateController;
 use App\Http\Controllers\DonationMailController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MemberController;
@@ -43,6 +45,39 @@ Route::get('/dashboad', [DashbordController::class, 'index'])->name('dashboad');
  Route::put('/change/profile', [ProfileController::class,'changePicture'])->name("change-profile");
 
 });
+
+
+
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::resource('gallery', AdminGalleryController::class)
+            ->except(['show']);
+    });
+
+Route::get('/gallery', [GalleryController::class, 'index'])
+    ->name('gallery');
+
+Route::get('/gallery/create', [GalleryController::class, 'create'])
+    ->name('gallery.create');
+
+Route::post('/gallery', [GalleryController::class, 'store'])
+    ->name('gallery.store');
+
+Route::get('/gallery/{id}', [GalleryController::class, 'show'])
+    ->name('gallery.show');
+
+Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit'])
+    ->name('gallery.edit');
+
+Route::put('/gallery/{id}', [GalleryController::class, 'update'])
+    ->name('gallery.update');
+
+Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])
+    ->name('gallery.destroy');
+
+ Route::get('/become-a-volunteer', [VolunteerController::class,"create"])->name('volunteer.create');
 
 
 Route::middleware(['role:admin'])->group(function () {

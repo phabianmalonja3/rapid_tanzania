@@ -416,7 +416,7 @@ function blockForm(data) {
 
 
 
-
+ <x-site-popups />
 
 </body>
 

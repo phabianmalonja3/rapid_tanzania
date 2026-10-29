@@ -4,7 +4,10 @@
     <main class="main">
         
         <x-hero />
+
+        <x-our-impact />
         <x-about />
+        <x-home-gallery />
 
         <x-our-services />
 

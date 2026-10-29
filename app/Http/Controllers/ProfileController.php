@@ -97,7 +97,7 @@ class ProfileController extends Controller
 
         return back()->with("success", 'Successfull Update Your passord');
     }
-    public function changePicture(Request $request)
+    public function  changePicture(Request $request)
     {
         $request->validate([
             'profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

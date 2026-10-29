@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Volunteer;
 use Illuminate\Http\Request;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class VolunteerController extends Controller
 {
@@ -20,6 +21,15 @@ class VolunteerController extends Controller
      */
     public function create()
     {
+
+    $seoData = new SEOData(
+    title: 'Become a Volunteer | RAPID Tanzania',
+    description: 'Join RAPID Tanzania as a volunteer and help strengthen disaster risk reduction, humanitarian response, and community resilience.',
+    robots: 'index, follow',
+);
+
+return view("volunteer.create",
+compact("seoData"));
         //
     }
 

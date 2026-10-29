@@ -148,7 +148,12 @@
         <li><a href="{{ route('event-list') }}" class="{{ Route::is('event-list') ? 'active' : '' }}">News</a></li>
         
         <li><a href="{{ route('about') }}" class="{{ Route::is('about') ? 'active' : '' }}">About</a></li>
-
+       <li>
+    <a href="{{ route('gallery') }}"
+       class="{{ Route::is('gallery') ? 'active' : '' }}">
+        Gallery
+    </a>
+</li>
         @auth
             <li><a href="{{ route('dashboad') }}" class="{{ Route::is('dashboad') ? 'active' : '' }}">Dashboard</a></li>
         @endauth

@@ -124,8 +124,37 @@
 
             @endrole
 
+
+            {{-- Gallery --}}
+@role('admin')
+<li class="dropdown {{ Route::is('admin.gallery.*') ? 'active' : '' }}">
+    <a href="#" class="menu-toggle nav-link has-dropdown">
+        <i data-feather="image"></i>
+        <span>Gallery Management</span>
+    </a>
+
+    <ul class="dropdown-menu">
+        <li class="{{ Route::is('admin.gallery.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.gallery.index') }}">
+                <i data-feather="grid"></i>
+                <span>Gallery List</span>
+            </a>
+        </li>
+
+        <li class="{{ Route::is('admin.gallery.create') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.gallery.create') }}">
+                <i data-feather="plus-circle"></i>
+                <span>Add Gallery Activity</span>
+            </a>
+        </li>
+    </ul>
+</li>
+@endrole
   
         </ul>
     </aside>
+
+
+
 
 </div>
